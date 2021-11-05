@@ -1,5 +1,6 @@
 package com.bridgelabz.addressbookapp.controller;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,5 +32,10 @@ public class AddressBookController {
 	@PutMapping("/update")
 	public String updateContact(@RequestBody Contact contact) {
 		return "Updated "+contact.getName()+" in list";
+	}
+	
+	@DeleteMapping("/delete/{id}")
+	public String deleteContact(@PathVariable String id) {
+		return "Deleted contact "+id;
 	}
 }
