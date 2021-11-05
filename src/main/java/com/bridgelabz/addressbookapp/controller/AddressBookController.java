@@ -35,7 +35,7 @@ public class AddressBookController {
 	@GetMapping("/get/{id}")
 	public ResponseEntity<ResponseDTO> welcomeSpecificUser(@PathVariable("id") String id) {
 		Contact contact = null;
-		contact = addressBookService.getContactById();
+		contact = addressBookService.getContactById(id);
 		ResponseDTO respDTO = new ResponseDTO("GET by id successful",contact);
 		return new ResponseEntity<ResponseDTO>(respDTO,HttpStatus.OK);
 	}
@@ -48,10 +48,10 @@ public class AddressBookController {
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
 	}
 	
-	@PutMapping("/update")
-	public ResponseEntity<ResponseDTO> updateContact(@RequestBody AddressBookDTO addressBookDTO) {
+	@PutMapping("/update/{id}")
+	public ResponseEntity<ResponseDTO> updateContact(@PathVariable("id") String id, @RequestBody AddressBookDTO addressBookDTO) {
 		Contact contact = null;
-		contact =  addressBookService.updateContact(addressBookDTO);
+		contact =  addressBookService.updateContact(id, addressBookDTO);
 		ResponseDTO respDTO = new ResponseDTO("PUT successful",contact);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
 	}

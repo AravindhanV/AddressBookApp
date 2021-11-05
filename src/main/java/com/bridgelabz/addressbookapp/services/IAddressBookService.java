@@ -7,8 +7,8 @@ import com.bridgelabz.addressbookapp.model.Contact;
 
 public interface IAddressBookService {
 	List<Contact> getContact();
-	Contact getContactById();
+	Contact getContactById(String id);
 	Contact createContact(AddressBookDTO addressBookDTO);
-	Contact updateContact(AddressBookDTO addressBookDTO);
+	Contact updateContact(String id, AddressBookDTO addressBookDTO);
 	void deleteContact(String id);
 }
