@@ -35,7 +35,7 @@ public class AddressBookService implements IAddressBookService {
 		Contact contact = null;
 		contact =  new Contact(addressBookDTO);
 		contactList.add(contact);
-		return contact;
+		return addressRepository.save(addrBookData);
 	}
 
 	@Override
