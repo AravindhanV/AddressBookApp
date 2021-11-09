@@ -23,6 +23,10 @@ public @Data class Contact {
 	public Contact() {}
 	
 	public Contact(AddressBookDTO addressBookDTO) {
+		this.updateAddressBook(addressBookDTO);
+	}
+	
+	public void updateAddressBook(AddressBookDTO addressBookDTO) {
 		this.name = addressBookDTO.getName();
 	}
 }

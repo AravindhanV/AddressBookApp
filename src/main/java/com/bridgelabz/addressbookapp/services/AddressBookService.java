@@ -22,12 +22,12 @@ public class AddressBookService implements IAddressBookService {
 
 	@Override
 	public List<Contact> getContact() {
-		return contactList;
+		return addressRepository.findAll();
 	}
 
 	@Override
 	public Contact getContactById(String id) {
-		return contactList.stream().filter(c -> c.getId().equals(id)).findFirst().orElseThrow(() -> new AddressBookException("Contact not found"));
+		retuetId().equals(id)).findFirst().orElseThrow(() -> new AddressBookException("Contact not found"));
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class AddressBookService implements IAddressBookService {
 		Contact contact = null;
 		contact =  new Contact(addressBookDTO);
 		contactList.add(contact);
-		return addressRepository.save(addrBookData);
+		return addressRepository.save(contact);
 	}
 
 	@Override
@@ -50,10 +50,8 @@ public class AddressBookService implements IAddressBookService {
 
 	@Override
 	public void deleteContact(String id) {
-		Contact contact = getContactById(id);
-		int index = contactList.indexOf(contact);
-		contactList.remove(index);
-		return;
+		Contact addrBookData = this.getContactById(id);
+		addressRepository.delete(addrBookData);
 	}
 	
 }
