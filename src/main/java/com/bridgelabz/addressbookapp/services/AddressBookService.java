@@ -27,7 +27,7 @@ public class AddressBookService implements IAddressBookService {
 
 	@Override
 	public Contact getContactById(String id) {
-		retuetId().equals(id)).findFirst().orElseThrow(() -> new AddressBookException("Contact not found"));
+		return contactList.stream().filter(c -> c.getId().equals(id)).findFirst().orElseThrow(() -> new AddressBookException("Contact not found"));
 	}
 
 	@Override
