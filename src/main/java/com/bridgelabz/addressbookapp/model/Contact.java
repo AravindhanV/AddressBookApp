@@ -22,8 +22,7 @@ public @Data class Contact {
 	
 	public Contact() {}
 	
-	public Contact(String id, AddressBookDTO addressBookDTO) {
-		this.id = id;
+	public Contact(AddressBookDTO addressBookDTO) {
 		this.name = addressBookDTO.getName();
 	}
 }
