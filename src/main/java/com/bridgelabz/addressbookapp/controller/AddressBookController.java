@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ import com.bridgelabz.addressbookapp.services.IAddressBookService;
 
 @RestController
 @RequestMapping("/addressbookservice")
+@CrossOrigin(origins="http://localhost:3000")
 public class AddressBookController {
 	@Autowired
 	private IAddressBookService addressBookService;
@@ -35,7 +37,7 @@ public class AddressBookController {
 	}
 	
 	@GetMapping("/get/{id}")
-	public ResponseEntity<ResponseDTO> welcomeSpecificUser(@PathVariable("id") String id) {
+	public ResponseEntity<ResponseDTO> welcomeSpecificUser(@PathVariable("id") int id) {
 		Contact contact = null;
 		contact = addressBookService.getContactById(id);
 		ResponseDTO respDTO = new ResponseDTO("GET by id successful",contact);
@@ -51,7 +53,7 @@ public class AddressBookController {
 	}
 	
 	@PutMapping("/update/{id}")
-	public ResponseEntity<ResponseDTO> updateContact(@PathVariable("id") String id, @Valid @RequestBody AddressBookDTO addressBookDTO) {
+	public ResponseEntity<ResponseDTO> updateContact(@PathVariable("id") int id, @Valid @RequestBody AddressBookDTO addressBookDTO) {
 		Contact contact = null;
 		contact =  addressBookService.updateContact(id, addressBookDTO);
 		ResponseDTO respDTO = new ResponseDTO("PUT successful",contact);
@@ -59,7 +61,7 @@ public class AddressBookController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<ResponseDTO> deleteContact(@PathVariable("id") String id) {
+	public ResponseEntity<ResponseDTO> deleteContact(@PathVariable("id") int id) {
 		addressBookService.deleteContact(id);
 		ResponseDTO respDTO = new ResponseDTO("DELETE Successful","Deleted id: "+id);
 		return new ResponseEntity<ResponseDTO>(respDTO,HttpStatus.OK);

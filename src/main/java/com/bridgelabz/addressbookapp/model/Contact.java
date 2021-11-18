@@ -17,16 +17,34 @@ public @Data class Contact {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="contact_id")
-	private String id;
+	private int id;
 	private String name;
+	private String address;
+	private String city;
+	private String state;
+	private String zip;
+	private String phoneNumber;
 	
-	public Contact() {}
-	
+	public Contact() {
+		
+	}
 	public Contact(AddressBookDTO addressBookDTO) {
-		this.updateAddressBook(addressBookDTO);
+		this.updateAddressBookData(addressBookDTO);
+	}
+	public void updateAddressBookData(AddressBookDTO addressBookDTO) {
+		this.name = addressBookDTO.name;
+		this.address = addressBookDTO.address;
+		this.city = addressBookDTO.city;
+		this.state = addressBookDTO.state;
+		this.zip = addressBookDTO.zip;
+		this.phoneNumber = addressBookDTO.phoneNumber;
 	}
 	
-	public void updateAddressBook(AddressBookDTO addressBookDTO) {
-		this.name = addressBookDTO.getName();
+	public int getId() {
+		return this.id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 }
